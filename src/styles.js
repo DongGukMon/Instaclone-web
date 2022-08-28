@@ -11,11 +11,13 @@ import reset from "styled-reset";
 export const lightTheme = {
   accent: "#0095f6",
   borderColor: "rgb(219,219,219)",
+  maxWidth: "930px",
 };
 
 export const darkTheme = {
   fontColor: "white",
   bgColor: "#2c2c2c",
+  maxWidth: "930px",
 };
 
 export const GlobalStyles = createGlobalStyle`

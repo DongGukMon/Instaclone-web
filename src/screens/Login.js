@@ -17,6 +17,7 @@ import PageTitle from "../components/PageTitle";
 import { useForm } from "react-hook-form";
 import FormError from "../components/auth/FormError";
 import LoginMutation from "../mutations/LoginMutation";
+import { useLocation } from "react-router-dom";
 
 const FacebookLogin = styled.div`
   color: #385285;
@@ -27,6 +28,10 @@ const FacebookLogin = styled.div`
 `;
 
 const Login = () => {
+  // 아래와같이 useLocation을 사용하면 navigator를 통해 전달한 state에 접근할 수 있다.
+  // const location = useLocation()
+  // console.log(location.state)
+
   const {
     register,
     handleSubmit,
@@ -35,6 +40,11 @@ const Login = () => {
     clearErrors,
   } = useForm({
     mode: "onChange",
+    // 아래와 같이 defaultValues를 사용하면 input의 value 초기값을 설정할 수 있다. location.state를 쓰면 다른 페이지에서 전달받은 변수를 넣을 수 있다.
+    // defaultValues:{
+    //   username:location?.state?.username || "",
+    //   password:location?.state?.password || ""
+    // }
   });
 
   const onCompleted = ({ login: { ok, error, token } }) => {

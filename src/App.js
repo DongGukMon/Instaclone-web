@@ -10,7 +10,7 @@ import { darkTheme, lightTheme, GlobalStyles } from "./styles";
 import routes from "./routes";
 import { HelmetProvider } from "react-helmet-async";
 import { client } from "./apollo";
-// import { useEffect } from "react";
+import Layout from "./components/Layout";
 
 function App() {
   const isLoggedIn = useReactiveVar(isLoggedInVar);
@@ -24,7 +24,15 @@ function App() {
             <Routes>
               <Route
                 path={routes.home}
-                element={isLoggedIn ? <Home /> : <Login />}
+                element={
+                  isLoggedIn ? (
+                    <Layout>
+                      <Home />
+                    </Layout>
+                  ) : (
+                    <Login />
+                  )
+                }
               />
               {!isLoggedIn ? (
                 <Route path={routes.signUp} element={<SignUp />} />

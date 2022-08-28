@@ -97,7 +97,9 @@ const SignUp = () => {
     const { username, password } = getValues();
     //회원가입 완료 후 자동로그인을 위해 login api 실행
     login({ variables: { username, password } });
-    navigate(routes.home);
+
+    //message는 home에서 const location = useLocation()을 하면 location.state로 접근 가능
+    navigate(routes.home, { message: "Account created!" });
   };
 
   //createAccount apit사용을 위해 useMutation 사용
