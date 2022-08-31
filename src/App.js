@@ -11,6 +11,7 @@ import routes from "./routes";
 import { HelmetProvider } from "react-helmet-async";
 import { client } from "./apollo";
 import Layout from "./components/Layout";
+import Banana from "./Banana";
 
 function App() {
   const isLoggedIn = useReactiveVar(isLoggedInVar);
@@ -37,6 +38,7 @@ function App() {
               {!isLoggedIn ? (
                 <Route path={routes.signUp} element={<SignUp />} />
               ) : null}
+              <Route path="/banana" element={<Banana />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </Router>
