@@ -12,6 +12,7 @@ import { HelmetProvider } from "react-helmet-async";
 import { client } from "./apollo";
 import Layout from "./components/Layout";
 import Banana from "./Banana";
+import Profile from "./screens/Profile";
 
 function App() {
   const isLoggedIn = useReactiveVar(isLoggedInVar);
@@ -40,6 +41,7 @@ function App() {
               ) : null}
               <Route path="/banana" element={<Banana />} />
               <Route path="*" element={<NotFound />} />
+              <Route path="/users/:username" element={<Profile />} />
             </Routes>
           </Router>
           <GlobalStyles />

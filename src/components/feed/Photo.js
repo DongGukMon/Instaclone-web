@@ -13,6 +13,7 @@ import {
 } from "@fortawesome/free-regular-svg-icons";
 import { gql, useMutation } from "@apollo/client";
 import Comments from "./Comments";
+import { Link } from "react-router-dom";
 
 const TOGGLE_LIKE_MUTATION = gql`
   mutation toggleLike($id: Int!) {
@@ -117,8 +118,12 @@ function Photo({
   return (
     <PhotoContatiner>
       <PhotoHeader>
-        <Avatar url={user.avatar} lg />
-        <Username>{user.username}</Username>
+        <Link to={`/users/${user.username}`}>
+          <Avatar url={user.avatar} lg />
+        </Link>
+        <Link to={`/users/${user.username}`}>
+          <Username>{user.username}</Username>
+        </Link>
       </PhotoHeader>
       <PhotoFile src={file} />
       <PhotoData>
@@ -150,6 +155,7 @@ function Photo({
           caption={caption}
           commentNumber={commentNumber}
           author={user.username}
+          photoId={id}
         />
       </PhotoData>
     </PhotoContatiner>

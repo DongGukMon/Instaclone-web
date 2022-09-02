@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useRef } from "react";
 
 const FirstContainer = React.memo(({ children, color }) => {
   console.log("First container is rendered");
@@ -47,6 +47,7 @@ const ThirdContainer = React.memo(() => {
 const Banana = () => {
   const [color, setColor] = useState(false);
   console.log("Home is rendered");
+
   return (
     <div>
       <FirstContainer color={color} setColor={setColor}>
