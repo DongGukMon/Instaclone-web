@@ -41,7 +41,14 @@ function App() {
               ) : null}
               <Route path="/banana" element={<Banana />} />
               <Route path="*" element={<NotFound />} />
-              <Route path="/users/:username" element={<Profile />} />
+              <Route
+                path="/users/:username"
+                element={
+                  <Layout>
+                    <Profile />
+                  </Layout>
+                }
+              />
             </Routes>
           </Router>
           <GlobalStyles />

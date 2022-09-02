@@ -6,6 +6,9 @@ import { gql, useMutation } from "@apollo/client";
 
 const SComment = styled.div`
   margin-top: 10px;
+  justify-content: space-between;
+  display: flex;
+  flex-direction: row;
 `;
 const CommentCaption = styled.span`
   margin-left: 10px;
@@ -19,6 +22,15 @@ const CommentCaption = styled.span`
   }
 `;
 
+const DeleteButton = styled.button`
+  margin-right: 3px;
+  border: none;
+  background-color: white;
+  &:hover {
+    cursor: pointer;
+  }
+`;
+
 const DELETE_COMMENT_MUTATION = gql`
   mutation deleteComment($id: Int!) {
     deleteComment(id: $id) {
@@ -29,6 +41,7 @@ const DELETE_COMMENT_MUTATION = gql`
 `;
 
 function Comment({ author, payload, id, isMine, photoId }) {
+  console.log("comment render");
   const deleteCommentUpdate = (cache, result) => {
     const {
       data: {
@@ -52,24 +65,28 @@ function Comment({ author, payload, id, isMine, photoId }) {
 
   return (
     <SComment>
-      <Link to={`/users/${author}`}>
-        <FatText>{author}</FatText>
-      </Link>
-      <CommentCaption>
-        {payload.split(" ").map((word, index) =>
-          /#[ㄱ-ㅎ|ㅏ-ㅣ|가-힣|\w]+/.test(word) ? (
-            <React.Fragment key={index}>
-              <Link to={`/hashtags/${word}`}>{word} </Link>
-            </React.Fragment>
-          ) : (
-            <React.Fragment key={index}>{word} </React.Fragment>
-          )
-        )}
-      </CommentCaption>
+      <div>
+        <Link to={`/users/${author}`}>
+          <FatText>{author}</FatText>
+        </Link>
+        <CommentCaption>
+          {payload.split(" ").map((word, index) =>
+            /#[ㄱ-ㅎ|ㅏ-ㅣ|가-힣|\w]+/.test(word) ? (
+              <React.Fragment key={index}>
+                <Link to={`/hashtags/${word}`}>{word} </Link>
+              </React.Fragment>
+            ) : (
+              <React.Fragment key={index}>{word} </React.Fragment>
+            )
+          )}
+        </CommentCaption>
+      </div>
       {!isMine ? null : (
-        <button onClick={() => deleteCommentMutation({ variables: { id } })}>
-          삭제
-        </button>
+        <DeleteButton
+          onClick={() => deleteCommentMutation({ variables: { id } })}
+        >
+          ❌
+        </DeleteButton>
       )}
     </SComment>
   );

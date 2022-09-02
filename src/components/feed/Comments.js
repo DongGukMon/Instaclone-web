@@ -4,7 +4,6 @@ import PropTypes from "prop-types";
 import { useForm } from "react-hook-form";
 import Input from "../auth/Input";
 import { gql, useMutation } from "@apollo/client";
-import { logUserOut } from "../../apollo";
 import useUser from "../../hooks/useUser";
 import { useHref } from "react-router-dom";
 
@@ -15,9 +14,13 @@ const SComments = styled.div`
 const CommentCount = styled.span`
   display: block;
   opacity: 0.7;
-  margin: 10px 0px;
+  margin: 10px 0px 15px 0px;
   font-weight: 600;
   font-size: 12px;
+`;
+
+const InputContainer = styled.div`
+  margin-top: 10px;
 `;
 
 const CREATE_COMMENT_MUTATION = gql`
@@ -37,6 +40,7 @@ export default function Comments({
   commentNumber,
   photoId,
 }) {
+  console.log("comments render");
   const {
     register,
     handleSubmit,
@@ -132,7 +136,7 @@ export default function Comments({
           photoId={photoId}
         />
       ))}
-      <div>
+      <InputContainer>
         <form onSubmit={handleSubmit(onValid)}>
           <Input
             {...register("payload", { required: true })}
@@ -140,8 +144,7 @@ export default function Comments({
             placeholder="Input messages"
           />
         </form>
-      </div>
-      <button onClick={() => logUserOut()}>logout</button>
+      </InputContainer>
     </SComments>
   );
 }

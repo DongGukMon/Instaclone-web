@@ -87,6 +87,8 @@ function Photo({
   comments,
   commentNumber,
 }) {
+  console.log("photo render");
+
   const updateToggleLike = (cache, result) => {
     const {
       data: {
