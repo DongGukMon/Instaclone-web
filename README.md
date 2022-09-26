@@ -1,6 +1,6 @@
-# Instaclone Web
+# Instaclone
 
-## Instaclone-backend
+## Instaclone-Web
 노마드코더의 [풀스택]인스타그램 클론코딩 강의를 들으며 진행한 프로젝트입니다.
 
 ## 기술 스택
