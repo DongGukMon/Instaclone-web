@@ -7,6 +7,7 @@
 - create react app
 - javascript
 - apollo client
+- reactive variables / apollo client cache
 - styled component
 - react hooks
 
